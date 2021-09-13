@@ -17,9 +17,10 @@ import { Tempo } from 'src/app/common/tempo';
 export class TempoComponent implements OnInit {
 
   placas!: String[];
-  date: Date | undefined;
+  dateIni: Date | undefined;
+  dateFin: Date | undefined;
   posicoes!: Posicao[];
-  selected: string | undefined;
+  selected!: string;
   pontosInteresse: PontoInteresse[] | undefined;
   tempos!: Tempo[];
   showTable: boolean = false;
@@ -36,8 +37,11 @@ export class TempoComponent implements OnInit {
   }
 
   buscar() {
-    if (this.selected !== undefined && this.date !== undefined) {
-      this.posicoesService.posicaoByPlacaData(this.selected, this.date).subscribe(data => {
+    if (this.selected == undefined || this.selected == ''){
+      this.selected = '';
+    }
+    if (this.dateIni !== undefined && this.dateFin !== undefined) {
+      this.posicoesService.posicaoByPlacaData(this.selected, this.dateIni, this.dateFin).subscribe(data => {
         this.posicoes = data;
         if (this.posicoes !== null) {
           this.calcularTempo();
@@ -149,14 +153,22 @@ export class TempoComponent implements OnInit {
   }
 
   resetPlaca() {
-    this.selected = undefined;
+    this.selected = '';
   }
 
-  dateChange(event: MatDatepickerInputEvent<string>) {
+  dateChangeIni(event: MatDatepickerInputEvent<string>) {
     if (event.value !== null) {
-      this.date = new Date(event.value);
+      this.dateIni = new Date(event.value);
     } else {
-      this.date = undefined;
+      this.dateIni = undefined;
+    }
+  }
+
+  dateChangeFin(event: MatDatepickerInputEvent<string>) {
+    if (event.value !== null) {
+      this.dateFin = new Date(event.value);
+    } else {
+      this.dateFin = undefined;
     }
   }
 

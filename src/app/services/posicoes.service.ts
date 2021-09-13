@@ -21,16 +21,18 @@ export class PosicoesService {
     return this.httpClient.get<String[]>(this.baseUrl + '/placas');
   }
 
-  public posicaoByPlacaData(placa: string, data: Date): Observable<Posicao[]> {
+  public posicaoByPlacaData(placa: string, dataIni: Date, dataFin: Date): Observable<Posicao[]> {
     let params = new HttpParams();
-    if (placa !== undefined) {
-      params = params.set('placa', placa);
-    }
-    if (data !== undefined) {
-      params = params.set('dataIni', data.getMonth()+1 + "/" + data.getDate() + "/" + data.getFullYear());
-      params = params.set('dataFin', data.getMonth()+1 + "/" + data.getDate() + "/" + data.getFullYear());
-    }
 
-    return this.httpClient.get<Posicao[]>(this.baseUrl + '/posicao-por-placa-data', { params });
+    if (dataIni !== undefined && dataFin !== undefined) {
+      params = params.set('dataIni', dataIni.getMonth()+1 + "/" + dataIni.getDate() + "/" + dataIni.getFullYear() + " " + "00:00:00");
+      params = params.set('dataFin', dataFin.getMonth()+1 + "/" + dataFin.getDate() + "/" + dataFin.getFullYear() + " " + "23:59:59");
+    }
+    if (placa !== undefined && placa !== ''){
+      params = params.set('placa', placa);
+      return this.httpClient.get<Posicao[]>(this.baseUrl + '/posicao-por-placa-data', { params });
+    } else {
+      return this.httpClient.get<Posicao[]>(this.baseUrl + '/posicao-por-data', { params });
+    }    
   }  
 }
