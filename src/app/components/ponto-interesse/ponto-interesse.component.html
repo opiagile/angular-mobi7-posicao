@@ -1,0 +1,25 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Mapa</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Raio</th>
+            <th scope="col">Latitude</th>
+            <th scope="col">Longitude</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let poi of pontosInteresse">
+            <td><a href="https://www.google.com/maps/place/{{ poi.latitude }} {{ poi.longitude }}" target="_blank">{{ poi.id }}</a></td>
+            <td>{{ poi.nome }}</td>
+            <td>{{ poi.raio }}</td>
+            <td>{{ poi.latitude }}</td>
+            <td>{{ poi.longitude }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

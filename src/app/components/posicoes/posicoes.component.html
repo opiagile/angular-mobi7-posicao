@@ -1,0 +1,29 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Mapa</th>  
+            <th scope="col">Placa</th>
+            <th scope="col">Data Posição</th>
+            <th scope="col">Velocidade</th>
+            <th scope="col">latitude</th>
+            <th scope="col">longitude</th>
+            <th scope="col">ignicao</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tempPosicao of posicoes">    
+            <td><a href="https://www.google.com/maps/place/{{ tempPosicao.latitude }} {{ tempPosicao.longitude }}" target="_blank">{{ tempPosicao.id }}</a></td>        
+            <td>{{ tempPosicao.placa }}</td>
+            <td>{{ tempPosicao.dataPosicao }}</td>
+            <td>{{ tempPosicao.velocidade }}</td>
+            <td>{{ tempPosicao.latitude }}</td>
+            <td>{{ tempPosicao.longitude }}</td>
+            <td>{{ tempPosicao.ignicao }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
