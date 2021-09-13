@@ -1,5 +1,8 @@
 # AngularMobi7Posicao
 
+## Observação
+  Ainda há algumas correção na formatação do dropdown dos componentes. Mas a consulta está funcionando corretamente.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.4.
 
 ## Development server
